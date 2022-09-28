@@ -4,6 +4,6 @@ https://adventofcode.com/2020 Advent of Code is an annual set of Christmas-theme
 
 ⚡ W O R K - I N - P R O G R E S S ⚡
 
-☄ CURRENTLY SOLVING: Day 1, part 2
+☄ CURRENTLY SOLVING: Day 3, part 2
 
-🔧 L A S T - U P D A T E : september 27, 2022
+🔧 L A S T - U P D A T E : september 28, 2022
