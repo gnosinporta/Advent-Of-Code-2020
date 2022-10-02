@@ -19,7 +19,7 @@ class Day3:
             self.data = file_input.split()
 
         print(f'Day 3, Part 1: {self.part1()}')
-        # print(f'Day 3, Part 2: {self.part2()}')
+        print(f'Day 3, Part 2: {self.part2()}')
 
     def part1(self):
         """
@@ -111,12 +111,13 @@ class Day3:
             i += 3
             # let's check if we are beyond the right edge of each line. If so, we step back a whole data_len
             # another solution would be to reproduce the input infinite times to the right, or dynamically
-            # as needed, but would have been not too efficient. This approach is way more simple.
+            # as needed, but that would have been not too efficient. This approach is way more simple.
             if i >= (data_len - 1):
                 i -= data_len
             if aux[i] == TREE:
                 trees += 1
 
+        print(f'Day 3, Part 1jfhjv: {self.how_many_trees(3, 1)}')
         return trees
 
     def part2(self):
@@ -139,3 +140,46 @@ class Day3:
 
         What do you get if you multiply together the number of trees encountered on each of the listed slopes?
         """
+
+        # The resolution of Part 2 is basically the same as Part 1, but with other parameters.
+        # Thus, we'll create a function that make the work in bots parts.
+        # We will create an array of results with all of them, and then they will be multiplied with each other.
+        # The parameters follow a geometrical progression (+2, and +1 when the first one did 1,3,5,7), so we can
+        # easily automate all the process
+
+        trees = []
+
+        for j in range(1, 8, 2):
+            trees.append(self.how_many_trees(j, 1))
+
+        # I won't make special logic in how_many_trees just for 1 case
+        trees.append(self.how_many_trees(1, 2))
+
+        print(trees)
+
+        # now let's multiply all the together
+
+        answer = 1
+
+        for element in trees:
+            answer *= element
+
+        return answer
+
+    def how_many_trees(self, lateral_step, down_step):
+        trees = 0
+        data_len = len(self.data[0])
+        print(data_len)
+        i = 0
+
+        for element in self.data[1::down_step]:  # we don't care about the first line of input
+            aux = list(element)
+            i += lateral_step
+            # let's check if we are beyond the right edge of each line. If so, we step back a whole data_len
+            # another solution would be to reproduce the input infinite times to the right, or dynamically
+            # as needed, but that would have been not too efficient. This approach is way more simple.
+            if i >= (data_len - 1):
+                i -= data_len
+            if aux[i] == TREE:
+                trees += 1
+        return trees
